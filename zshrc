@@ -147,3 +147,5 @@ transfer() {
     rm -f $tmpfile
 }
 eval "`npm completion`"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
