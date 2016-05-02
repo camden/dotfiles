@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/camden/.oh-my-zsh
+export ZSHRC=~/.zshrc
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,8 +50,10 @@ plugins=(git brew autojump sublime)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+DISABLE_AUTO_UPDATE="true"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,6 +87,14 @@ source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search.zsh
 alias tree='tree -C'
 alias love='/Applications/love.app/Contents/MacOS/love'
 
+alias vim='mvim'
+
+
+function gitnewpost() {
+    git add _posts/
+    git commit -m "new post"
+    git push -u origin gh-pages
+}
 
 # bind UP and DOWN arrow keys
 bindkey '^[[A' history-substring-search-up
@@ -134,7 +145,7 @@ transfer() {
         else
             # transfer file
             curl --progress-bar --upload-file "$file" "https://transfer.sh/$basefile" >> $tmpfile
-        fi
+    fi
     else 
         # transfer pipe
         curl --progress-bar --upload-file "-" "https://transfer.sh/$file" >> $tmpfile
@@ -149,3 +160,13 @@ transfer() {
 eval "`npm completion`"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+alias python='python3'
+alias pip='pip3'
+
+PATH="/usr/local/bin:$PATH"
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/opt/autoenv/activate.sh
+export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+eval alias fuck='TF_CMD=$(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(alias) thefuck $(fc -ln -1 | tail -n 1)) && eval $TF_CMD && print -s $TF_CMD'
