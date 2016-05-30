@@ -2,6 +2,9 @@
 export ZSH=/Users/camden/.oh-my-zsh
 export ZSHRC=~/.zshrc
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -86,6 +89,10 @@ source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search.zsh
 alias tree='tree -C'
 alias love='/Applications/love.app/Contents/MacOS/love'
+alias t='todo.sh -d ~/.todo/config'
+
+# add completion for todo.txt
+source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
 
 alias vim='mvim'
 
@@ -160,8 +167,8 @@ transfer() {
 eval "`npm completion`"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-alias python='python3'
-alias pip='pip3'
+# alias python='python3'
+# alias pip='pip3'
 
 PATH="/usr/local/bin:$PATH"
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
@@ -169,4 +176,4 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/opt/autoenv/activate.sh
 export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
-eval alias fuck='TF_CMD=$(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(alias) thefuck $(fc -ln -1 | tail -n 1)) && eval $TF_CMD && print -s $TF_CMD'
+alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
