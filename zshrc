@@ -49,7 +49,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew autojump sublime)
+plugins=(git brew autojump)
 
 # User configuration
 
@@ -177,3 +177,16 @@ source /usr/local/bin/virtualenvwrapper.sh
 source /usr/local/opt/autoenv/activate.sh
 export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
 alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+
+# USEFUL ALIASES
+
+alias rmi="rm -i"
+
+# GIT ALIASES
+
+alias gs='git status'
+alias gsm='git status | grep modified:'
+alias ga='git add'
+alias gc='git commit'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
