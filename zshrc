@@ -94,7 +94,7 @@ alias t='todo.sh -d ~/.todo/config'
 # add completion for todo.txt
 source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
 
-alias vim='mvim'
+# alias vim='mvim'
 
 
 function gitnewpost() {
