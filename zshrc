@@ -24,7 +24,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
- DISABLE_AUTO_TITLE="true"
+ # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -181,6 +181,7 @@ alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # USEFUL ALIASES
 
 alias rmi="rm -i"
+alias notify='osascript -e '\''display notification "Command finished executing" with title "Huzzah!"'\'
 
 # GIT ALIASES
 
@@ -190,3 +191,18 @@ alias ga='git add'
 alias gc='git commit'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# vi mode stuff
+bindkey -v
+
+precmd() { RPROMPT="" }
+function zle-line-init zle-keymap-select {
+   VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+   zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+export KEYTIMEOUT=1

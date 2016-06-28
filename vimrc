@@ -8,30 +8,33 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'sjl/gundo.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-surround'
-Plugin 'rking/ag.vim'
+Plugin 'elzr/vim-json'
+Plugin 'edsono/vim-matchit'
+Plugin 'gavocanov/vim-js-indent'
 Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'scrooloose/nerdtree'
-Plugin 'wellle/targets.vim'
-Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'mattn/emmet-vim'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'othree/yajs.vim'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'sjl/gundo.vim'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'wellle/targets.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'othree/yajs.vim'
-Plugin 'gavocanov/vim-js-indent'
-Plugin 'mxw/vim-jsx'
-Plugin 'elzr/vim-json'
-Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'alvan/vim-closetag'
+Plugin 'justinmk/vim-sneak'
+Plugin 'hynek/vim-python-pep8-indent'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,6 +56,9 @@ let g:used_javascript_libs = 'react, angularjs'
 
 " vim-jsx -> use for js files too
 let g:jsx_ext_required = 0
+
+" vim-closetag
+let g:closetag_filenames = "*.html,*.js,*.jsx"
 
 " Case insensitive search + case sensitive when including a capital letter in
 " search
@@ -80,8 +86,8 @@ set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tabs are spaces
 
 " aliases for myvimrc
-command! Editvim :e $MYVIMRC
-command! Editzsh :e ~/.zshrc
+command! Editvim :tabe $MYVIMRC
+command! Editzsh :tabe ~/.zshrc
 command! Sourcevim :source $MYVIMRC
 
 " allow buffers to be unsaved in the background
@@ -177,7 +183,10 @@ set foldlevelstart=999
 let NERDTreeIgnore = ['\.pyc$']
 
 " js indentation
-autocmd Filetype javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
+
+" detect json files correctly
+autocmd BufRead,BufNewFile *.json set filetype=json
 
 " reveal in finder
 function! s:RevealInFinder()
@@ -201,5 +210,14 @@ command! Reveal call <SID>RevealInFinder()
 let g:notes_directories = ['~/Dropbox/vim notes']
 let g:notes_suffix = '.txt'
 
-" easy motion color fix
-call EasyMotion#highlight#init()
+" " easy motion color fix
+" call EasyMotion#highlight#init()
+
+" " easy motion config
+" let g:EasyMotion_do_mapping = 0 "disable defaults
+" nmap <Leader>s <Plug>(easymotion-overwin-f)
+" let g:EasyMotion_smartcase = 1 "case insensitive features
+" map <Leader> <Plug>(easymotion-prefix)
+
+" sneak insensitive case
+let g:sneak#use_ic_scs = 1
