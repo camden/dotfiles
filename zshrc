@@ -24,7 +24,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
- # DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -190,7 +190,6 @@ alias gsm='git status | grep modified:'
 alias ga='git add'
 alias gc='git commit'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # vi mode stuff
 bindkey -v
@@ -206,3 +205,6 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 export KEYTIMEOUT=1
+
+set -o vi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

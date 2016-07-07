@@ -221,3 +221,6 @@ let g:notes_suffix = '.txt'
 
 " sneak insensitive case
 let g:sneak#use_ic_scs = 1
+
+" ignore node_modules and other common useless files
+let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|ico|git|svn))$'
