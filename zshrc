@@ -181,7 +181,7 @@ alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # USEFUL ALIASES
 
 alias rmi="rm -i"
-alias notify='osascript -e '\''display notification "Command finished executing" with title "Huzzah!"'\'
+alias notify='terminal-notifier -title "(づ￣ ³￣)づ" -message "Command finished executing" -sound "Frog" -activate com.apple.Terminal'
 
 # GIT ALIASES
 

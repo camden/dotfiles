@@ -8,6 +8,8 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'elzr/vim-json'
 Plugin 'edsono/vim-matchit'
@@ -35,6 +37,8 @@ Plugin 'xolox/vim-notes'
 Plugin 'alvan/vim-closetag'
 Plugin 'justinmk/vim-sneak'
 Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'ap/vim-css-color'
+Plugin 'KabbAmine/vCoolor.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -81,6 +85,7 @@ set number
 highlight LineNr guibg=white
 
 " indentation stuff
+set shiftwidth=4
 set tabstop=4 " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tabs are spaces
@@ -224,3 +229,11 @@ let g:sneak#use_ic_scs = 1
 
 " ignore node_modules and other common useless files
 let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|ico|git|svn))$'
+
+" colorizer config
+let g:colorizer_auto_filetype='css,html'
+
+" fix option key
+if has("gui_macvim")
+    set macmeta
+end
