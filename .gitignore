@@ -1,4 +1,6 @@
-vim/bundle/
 vim/.netrwhist
+vim/plugged/
 vim/sessions
 *.swp
+
+vim/.netrwhist

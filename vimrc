@@ -2,58 +2,40 @@ set nocompatible
 
 filetype off
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'elzr/vim-json'
-Plugin 'edsono/vim-matchit'
-Plugin 'gavocanov/vim-js-indent'
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'mattn/emmet-vim'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'mxw/vim-jsx'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'othree/yajs.vim'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'sjl/gundo.vim'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'wellle/targets.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-notes'
-Plugin 'alvan/vim-closetag'
-Plugin 'justinmk/vim-sneak'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'ap/vim-css-color'
-Plugin 'KabbAmine/vCoolor.vim'
+Plug 'JazzCore/ctrlp-cmatcher'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elzr/vim-json'
+Plug 'edsono/vim-matchit'
+Plug 'gavocanov/vim-js-indent'
+Plug 'jmcantrell/vim-virtualenv'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'othree/yajs.vim'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'sjl/gundo.vim'
+Plug 'ternjs/tern_for_vim'
+Plug 'tmhedberg/SimpylFold'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'Valloric/YouCompleteMe'
+Plug 'VundleVim/Vundle.vim'
+Plug 'wellle/targets.vim'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'alvan/vim-closetag'
+Plug 'justinmk/vim-sneak'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'ap/vim-css-color'
+Plug 'KabbAmine/vCoolor.vim'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
 
 " javascript-libraries-syntax config
 let g:used_javascript_libs = 'react, angularjs'
@@ -237,3 +219,6 @@ let g:colorizer_auto_filetype='css,html'
 if has("gui_macvim")
     set macmeta
 end
+
+" ctrlp-cmatcher
+let g:ctrlp_match_func = {'match': 'matcher#cmatch' }
