@@ -1,9 +1,18 @@
-set nocompatible
+" vim: fdm=marker foldmarker=(--,___
 
+" ____________________________________________________________________
+" IMPORTANT (-----------------------------------------------------------
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+set nocompatible
 filetype off
 
+" ____________________________________________________________________
+" PLUGINS (-----------------------------------------------------------
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'elzr/vim-json'
@@ -37,45 +46,111 @@ Plug 'KabbAmine/vCoolor.vim'
 
 call plug#end()
 
-" javascript-libraries-syntax config
-let g:used_javascript_libs = 'react, angularjs'
+" ____________________________________________________________________
+" PLUGIN OPTIONS (----------------------------------------------------
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
-" vim-jsx -> use for js files too
-let g:jsx_ext_required = 0
+" [ YANKSTACK ]
+    " initialization
+    call yankstack#setup()
 
-" vim-closetag
-let g:closetag_filenames = "*.html,*.js,*.jsx"
+" [ CTRL-P ]
+    " open new files in current window
+    let g:ctrlp_open_new_file = 'r'
 
-" Case insensitive search + case sensitive when including a capital letter in
-" search
-set ignorecase
-set smartcase
+    " ignore certain file types
+    let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git'
 
-syntax enable " enable syntax processing
+    " ctrlp-cmatcher
+    let g:ctrlp_match_func = {'match': 'matcher#cmatch' }
+
+    " ignore node_modules and other common useless files
+    let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|ico|git|svn))$'
+
+" [ YCM ]
+    " ycm stuff
+    let g:ycm_filepath_completion_use_working_dir = 1
+    let g:ycm_python_binary_path = '/usr/local/bin/python3'
+    let g:ycm_seed_identifiers_with_syntax = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+
+    " fix YCM status annoyances
+    set shortmess+=c
+
+
+" [ SYNTASTIC ]
+    " syntastic recommended settings
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+
+    let g:syntastic_javascript_checkers = ['eslint']
+
+    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['html', 'js'] }
+
+" [ OTHER ]
+    " [ javascript-libraries-syntax ]
+        let g:used_javascript_libs = 'react, angularjs'
+
+    " [ vim-jsx ] 
+        " use for js files too
+        let g:jsx_ext_required = 0
+
+    " [ vim-closetag ]
+        let g:closetag_filenames = "*.html,*.js,*.jsx"
+
+    " [ auto-pairs ]
+        " remove autopairs shortcut to be compatible with yankstack
+        let g:AutoPairsShortcutToggle = ''
+        " fix annoyance
+        let g:AutoPairsOnlyWhitespace = 1
+
+    " [ NERDTree ]
+        " ignore files
+        let NERDTreeIgnore = ['\.pyc$']
+
+    " [ vim-notes stuff ]
+        let g:notes_directories = ['~/Dropbox/vim notes']
+        let g:notes_suffix = '.txt'
+
+    " [ sneak ]
+        " insensitive case
+        let g:sneak#use_ic_scs = 1
+
+    " [ colorizer ]
+        let g:colorizer_auto_filetype='css,html'
+
+
+
+" ____________________________________________________________________
+" VIM OPTIONS (-------------------------------------------------------
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+syntax enable           " enable syntax processing
+
+set ignorecase          " case insensitive search unless 
+set smartcase           " search includes a capital letter
+
+set laststatus=2
+set statusline=%f       " display filename in status bar
+
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
 set incsearch           " search as characters are entered
 
-set laststatus=2
-set statusline=%f " display filename in status bar
+set number              " line numbers
+highlight linenr guibg=white
 
-set modelines=0
-set nomodeline " modelines are annoying
-
-" line numbers
-set number
-highlight LineNr guibg=white
-
-" indentation stuff
+" indentation
 set shiftwidth=4
-set tabstop=4 " number of visual spaces per TAB
+set tabstop=4 " number of visual spaces per tab
 set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tabs are spaces
-
-" aliases for myvimrc
-command! Editvim :tabe $MYVIMRC
-command! Editzsh :tabe ~/.zshrc
-command! Sourcevim :source $MYVIMRC
 
 " allow buffers to be unsaved in the background
 set hidden
@@ -84,76 +159,8 @@ set hidden
 set visualbell
 set noerrorbells
 
-let g:ctrlp_open_new_file = 'r'
-
-" ignore certain file types
-let g:ctrlp_custom_ignore = 'pyc\|DS_Store\|git'
-
-
-" set leader to spacebar
-let mapleader = "\<Space>"
-
-" ctrl p stuff
-nnoremap <Leader>o :CtrlP<CR>
-nnoremap <Leader>p :CtrlPMRU<CR>
-
-" toggle gundo
-nnoremap <Leader>u :GundoToggle<CR>
-
-" save
-nnoremap <Leader>w :w<CR>
-
-" alternate file
-nnoremap <Leader>r <C-^>
-
-" nerdtree toggle
-nnoremap <Leader>n :NERDTreeToggle<CR>
-
-" copy line no. + file name
-nnoremap <Leader>cfn :let @*=expand("%").":".line(".")<CR>
-
-" move between splits
-map <leader>h :wincmd h<CR>
-map <leader>j :wincmd j<CR>
-map <leader>k :wincmd k<CR>
-map <leader>l :wincmd l<CR>
-
-" remap for emmet
-" nnoremap <Leader>e <C-y>
-
-" syntastic recommended settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_javascript_checkers = ['eslint']
-
-" YCM stuff
-let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-
-" toggle syntastic, check on <Leader>e
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['html', 'js'] }
-nnoremap <Leader>e :SyntasticToggleMode<CR>
-
-" fix YCM status annoyances
-set shortmess+=c
-
-" disable auto commenting
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" source vim on save
-autocmd! bufwritepost .vimrc source %
-
-" use js syntax highlighting for json
-autocmd BufNewFile,BufRead *.json set ft=javascript
+" backspace over autoindent, line breaks, start of insert (see :help 'backspace')
+set backspace=indent,eol,start
 
 " number of lines to see above and below the cursor
 " set scrolloff=8
@@ -166,14 +173,34 @@ set undodir=~/.vim/undo//
 " folds open by default
 set foldlevelstart=999
 
-" NERDTree ignore files
-let NERDTreeIgnore = ['\.pyc$']
+" ____________________________________________________________________
+" AUTOCMD (-----------------------------------------------------------
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 " js indentation
 autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " detect json files correctly
 autocmd BufRead,BufNewFile *.json set filetype=json
+
+" disable auto commenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" source vim on save
+autocmd! bufwritepost $MYVIMRC source %
+
+" " use js syntax highlighting for json
+" autocmd BufNewFile,BufRead *.json set ft=javascript
+
+
+" ____________________________________________________________________
+" ALIASES/FUNCTIONS (-------------------------------------------------
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+
+" aliases for myvimrc
+command! Editvim :tabe $MYVIMRC
+command! Editzsh :tabe ~/.zshrc
+command! Sourcevim :source $MYVIMRC
 
 " reveal in finder
 function! s:RevealInFinder()
@@ -193,32 +220,52 @@ endfunction
 
 command! Reveal call <SID>RevealInFinder()
 
-""" vim-notes stuff
-let g:notes_directories = ['~/Dropbox/vim notes']
-let g:notes_suffix = '.txt'
 
-" " easy motion color fix
-" call EasyMotion#highlight#init()
+" ____________________________________________________________________
+" KEY MAPPINGS (------------------------------------------------------
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
-" " easy motion config
-" let g:EasyMotion_do_mapping = 0 "disable defaults
-" nmap <Leader>s <Plug>(easymotion-overwin-f)
-" let g:EasyMotion_smartcase = 1 "case insensitive features
-" map <Leader> <Plug>(easymotion-prefix)
+" set leader to spacebar
+let mapleader = "\<space>"
 
-" sneak insensitive case
-let g:sneak#use_ic_scs = 1
+" easier command entering
+nnoremap <leader>; :
 
-" ignore node_modules and other common useless files
-let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|ico|git|svn))$'
+" ctrl p stuff
+nnoremap <leader>o :CtrlP<cr>
+nnoremap <leader>p :CtrlPMRU<cr>
 
-" colorizer config
-let g:colorizer_auto_filetype='css,html'
+" toggle gundo
+nnoremap <leader>u :gundotoggle<cr>
+
+" save
+nnoremap <leader>w :w<cr>
+
+" alternate file
+nnoremap <leader>r <c-^>
+
+" nerdtree toggle
+nnoremap <leader>n :nerdtreetoggle<cr>
+
+" copy line no. + file name
+nnoremap <leader>cfn :let @*=expand("%").":".line(".")<cr>
+
+" move between splits
+map <leader>h :wincmd h<cr>
+map <leader>j :wincmd j<cr>
+map <leader>k :wincmd k<cr>
+map <leader>l :wincmd l<cr>
+
+" remap for emmet
+" nnoremap <leader>e <c-y>
+
+" toggle syntastic, check on <leader>e
+nnoremap <Leader>e :SyntasticToggleMode<CR>
 
 " fix option key
 if has("gui_macvim")
     set macmeta
 end
 
-" ctrlp-cmatcher
-let g:ctrlp_match_func = {'match': 'matcher#cmatch' }
+" ____________________________________________________________________
+" ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
