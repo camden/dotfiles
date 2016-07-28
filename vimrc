@@ -12,6 +12,7 @@ filetype off
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'haya14busa/incsearch.vim'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -51,8 +52,12 @@ call plug#end()
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 " [ YANKSTACK ]
+    " keys to trigger yankstack
+    let g:yankstack_yank_keys = ['y']
+
     " initialization
     call yankstack#setup()
+
 
 " [ CTRL-P ]
     " open new files in current window
@@ -133,6 +138,8 @@ call plug#end()
 
 syntax enable           " enable syntax processing
 
+colorscheme github
+
 set ignorecase          " case insensitive search unless 
 set smartcase           " search includes a capital letter
 
@@ -144,7 +151,6 @@ set wildmenu            " visual autocomplete for command menu
 set incsearch           " search as characters are entered
 
 set number              " line numbers
-highlight linenr guibg=white
 
 " indentation
 set shiftwidth=4
@@ -236,7 +242,7 @@ nnoremap <leader>o :CtrlP<cr>
 nnoremap <leader>p :CtrlPMRU<cr>
 
 " toggle gundo
-nnoremap <leader>u :gundotoggle<cr>
+nnoremap <leader>u :GundoToggle<cr>
 
 " save
 nnoremap <leader>w :w<cr>
@@ -249,6 +255,11 @@ nnoremap <leader>n :nerdtreetoggle<cr>
 
 " copy line no. + file name
 nnoremap <leader>cfn :let @*=expand("%").":".line(".")<cr>
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 " move between splits
 map <leader>h :wincmd h<cr>
