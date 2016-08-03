@@ -2,3 +2,5 @@
 vim/plugged/
 vim/sessions
 *.swp
+
+vim/.netrwhist

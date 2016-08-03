@@ -1,4 +1,4 @@
-" vim: fdm=marker foldmarker=(--,___
+" vim: fdm=marker foldmarker=(--,___ foldlevelstart=0 foldlevel=0
 
 " ____________________________________________________________________
 " IMPORTANT (-----------------------------------------------------------
@@ -12,6 +12,7 @@ filetype off
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'tpope/vim-repeat'
 Plug 'haya14busa/incsearch.vim'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'JazzCore/ctrlp-cmatcher'
@@ -53,7 +54,7 @@ call plug#end()
 
 " [ YANKSTACK ]
     " keys to trigger yankstack
-    let g:yankstack_yank_keys = ['y']
+    let g:yankstack_yank_keys = ['y', 'd']
 
     " initialization
     call yankstack#setup()
@@ -64,7 +65,7 @@ call plug#end()
     let g:ctrlp_open_new_file = 'r'
 
     " ignore certain file types
-    let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git'
+    let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git|CACHE/'
 
     " ctrlp-cmatcher
     let g:ctrlp_match_func = {'match': 'matcher#cmatch' }
@@ -106,6 +107,10 @@ call plug#end()
         " use for js files too
         let g:jsx_ext_required = 0
 
+    " [ ag.vim ] 
+        " turn off auto preview
+        cabbrev Ag Ag!
+
     " [ vim-closetag ]
         let g:closetag_filenames = "*.html,*.js,*.jsx"
 
@@ -138,7 +143,11 @@ call plug#end()
 
 syntax enable           " enable syntax processing
 
-colorscheme github
+colorscheme solarized
+set background=light
+let g:solarized_termcolors=256
+
+set relativenumber
 
 set ignorecase          " case insensitive search unless 
 set smartcase           " search includes a capital letter
@@ -151,6 +160,8 @@ set wildmenu            " visual autocomplete for command menu
 set incsearch           " search as characters are entered
 
 set number              " line numbers
+
+set clipboard=unnamed
 
 " indentation
 set shiftwidth=4
@@ -178,6 +189,11 @@ set undodir=~/.vim/undo//
 
 " folds open by default
 set foldlevelstart=999
+
+" fix option key
+if has("gui_macvim")
+    set macmeta
+end
 
 " ____________________________________________________________________
 " AUTOCMD (-----------------------------------------------------------
@@ -234,12 +250,19 @@ command! Reveal call <SID>RevealInFinder()
 " set leader to spacebar
 let mapleader = "\<space>"
 
+" when searching, center result in screen
+nnoremap n nzz
+nnoremap N Nzz
+
 " easier command entering
 nnoremap <leader>; :
 
 " ctrl p stuff
 nnoremap <leader>o :CtrlP<cr>
 nnoremap <leader>p :CtrlPMRU<cr>
+
+" ag
+nnoremap <leader>a :Ag!<space>
 
 " toggle gundo
 nnoremap <leader>u :GundoToggle<cr>
@@ -251,7 +274,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>r <c-^>
 
 " nerdtree toggle
-nnoremap <leader>n :nerdtreetoggle<cr>
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 " copy line no. + file name
 nnoremap <leader>cfn :let @*=expand("%").":".line(".")<cr>
@@ -272,11 +295,6 @@ map <leader>l :wincmd l<cr>
 
 " toggle syntastic, check on <leader>e
 nnoremap <Leader>e :SyntasticToggleMode<CR>
-
-" fix option key
-if has("gui_macvim")
-    set macmeta
-end
 
 " ____________________________________________________________________
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
