@@ -310,6 +310,9 @@ map <leader>j :wincmd j<cr>
 map <leader>k :wincmd k<cr>
 map <leader>l :wincmd l<cr>
 
+nnoremap j gj
+nnoremap k gk
+
 " remap for emmet
 " nnoremap <leader>e <c-y>
 
