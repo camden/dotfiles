@@ -1,4 +1,4 @@
-" vim: fdm=marker foldmarker=(--,___ foldlevelstart=0 foldlevel=0
+" vim: fdm=marker foldmarker=(--,___ foldlevelstart=0
 
 " ____________________________________________________________________
 " IMPORTANT (-----------------------------------------------------------
@@ -12,6 +12,10 @@ filetype off
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-repeat'
 Plug 'haya14busa/incsearch.vim'
 Plug 'maxbrunsfeld/vim-yankstack'
@@ -90,8 +94,8 @@ call plug#end()
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
+    " let g:syntastic_always_populate_loc_list = 1
+    " let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
 
@@ -99,7 +103,18 @@ call plug#end()
 
     let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['html', 'js'] }
 
+    let g:syntastic_error_symbol = "✗"
+    let g:syntastic_warning_symbol = "∆"
+
 " [ OTHER ]
+    " [ airline ]
+        let g:airline_powerline_fonts = 1
+      " an empty list disables all extensions
+      let g:airline_extensions = []
+
+      " or only load what you want
+      let g:airline_extensions = ['syntastic', 'tagbar', 'ctrlp', 'virtualenv', 'ycm']
+
     " [ javascript-libraries-syntax ]
         let g:used_javascript_libs = 'react, angularjs'
 
@@ -147,13 +162,15 @@ colorscheme solarized
 set background=light
 let g:solarized_termcolors=256
 
+set guifont=Menlo\ for\ Powerline
+
 set relativenumber
 
 set ignorecase          " case insensitive search unless 
 set smartcase           " search includes a capital letter
 
 set laststatus=2
-set statusline=%f       " display filename in status bar
+" set statusline=%f       " display filename in status bar
 
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
@@ -275,6 +292,9 @@ nnoremap <leader>r <c-^>
 
 " nerdtree toggle
 nnoremap <leader>n :NERDTreeToggle<cr>
+
+" tagbar toggle
+nnoremap <leader>t :TagbarToggle<cr>
 
 " copy line no. + file name
 nnoremap <leader>cfn :let @*=expand("%").":".line(".")<cr>
