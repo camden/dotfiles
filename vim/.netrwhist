@@ -1,4 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/camden/.vim'
-let g:netrw_dirhist_2='/Users/camden/Documents/Development/Game Dev/Roguelike/learning-rot-js'
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/camden/Documents/Development/Web Dev/Django Projects/tutorial-polls/mysite/polls/templates/polls'
+let g:netrw_dirhist_2='/Users/camden/Documents/Work/ClearSummit/thg-web/thg/events'
+let g:netrw_dirhist_3='/Users/camden/Documents/Work/ClearSummit/thg-web/thg'
+let g:netrw_dirhist_4='/Users/camden/Documents/Work/ClearSummit/thg-web/thg/events'
+let g:netrw_dirhist_5='/Users/camden/Documents/Work/ClearSummit/thg-web/thg/events/api'
+let g:netrw_dirhist_6='/Users/camden/Documents/Development/Web/Learning/React/react-tutorial-master'
+let g:netrw_dirhist_7='/Users/camden/Documents/Development/Web/Learning/React'
+let g:netrw_dirhist_8='/Users/camden/Documents/Development/Web/Learning/React/react-tutorial-master'
+let g:netrw_dirhist_9='/Users/camden/Documents/Development/Web/Learning/React/react-tutorial-master/public'

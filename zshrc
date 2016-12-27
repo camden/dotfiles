@@ -5,6 +5,11 @@ export ZSHRC=~/.zshrc
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# react native junk
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -90,12 +95,12 @@ source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search.zsh
 alias tree='tree -C'
 alias love='/Applications/love.app/Contents/MacOS/love'
 alias t='todo.sh -d ~/.todo/config'
+alias startPythonServer="python -m SimpleHTTPServer"
 
 # add completion for todo.txt
 source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
 
 # alias vim='mvim'
-
 
 function gitnewpost() {
     git add _posts/
@@ -181,7 +186,7 @@ alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 # USEFUL ALIASES
 
 alias rmi="rm -i"
-alias notify='terminal-notifier -title "(づ￣ ³￣)づ" -message "Command finished executing" -sound "Frog" -activate com.apple.Terminal'
+alias notify='terminal-notifier -title "(づ￣ ³￣)づ" -message "Command finished executing" -sound "Frog" -activate com.googlecode.iterm2'
 
 # GIT ALIASES
 

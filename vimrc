@@ -1,4 +1,4 @@
-" vim: fdm=marker foldmarker=(--,___ foldlevelstart=0
+" vim: fdm=marker foldmarker=(--,___ foldlevelstart=0 foldlevel=0
 
 " ____________________________________________________________________
 " IMPORTANT (-----------------------------------------------------------
@@ -12,17 +12,29 @@ filetype off
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
-Plug 'OmniSharp/omnisharp-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'suan/vim-instant-markdown'
+" Plug 'xolox/vim-easytags'
+Plug 'blueyed/vim-diminactive'
+Plug 'lervag/vimtex'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-dispatch'
+Plug 'mattn/emmet-vim'
+Plug 'sjl/vitality.vim'
+Plug 'kchmck/vim-coffee-script'
+" Plug 'OmniSharp/omnisharp-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-repeat'
 Plug 'haya14busa/incsearch.vim'
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'JazzCore/ctrlp-cmatcher'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'elzr/vim-json'
-Plug 'edsono/vim-matchit'
+Plug 'tmhedberg/matchit'
 Plug 'gavocanov/vim-js-indent'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'jiangmiao/auto-pairs'
@@ -68,14 +80,14 @@ call plug#end()
     " open new files in current window
     let g:ctrlp_open_new_file = 'r'
 
-    " ignore certain file types
-    let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git|CACHE/'
+    " " ignore certain file types
+    " let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$'
 
-    " ctrlp-cmatcher
-    let g:ctrlp_match_func = {'match': 'matcher#cmatch' }
+    " " ignore CACHE folder
+    " set wildignore+=*/CACHE/*
 
-    " ignore node_modules and other common useless files
-    let g:ctrlp_custom_ignore = '\v[\/](node_modules)|(\.(swp|ico|git|svn))$'
+    " py matcher
+    let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " [ YCM ]
     " ycm stuff
@@ -94,26 +106,36 @@ call plug#end()
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
 
-    " let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_always_populate_loc_list = 1
     " let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_open = 0
     let g:syntastic_check_on_wq = 0
 
     let g:syntastic_javascript_checkers = ['eslint']
 
-    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['html', 'js'] }
+    let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': ['html', 'js'] }
 
-    let g:syntastic_error_symbol = "✗"
-    let g:syntastic_warning_symbol = "∆"
+    let g:syntastic_error_symbol = "✗✗"
+    let g:syntastic_warning_symbol = "~~"
+
+    " let g:syntastic_quiet_messages = {
+" \       'regex': "Name should have prefix"
+" \    }
+
+    " let g:syntastic_quiet_messages = { 'type' : ['style', 'syntax'] }
 
 " [ OTHER ]
+    " [ omnisharp ]
+        " Get Code Issues and syntax errors
+        let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']   
+
     " [ airline ]
         let g:airline_powerline_fonts = 1
-      " an empty list disables all extensions
-      let g:airline_extensions = []
+        " an empty list disables all extensions
+        let g:airline_extensions = []
 
-      " or only load what you want
-      let g:airline_extensions = ['syntastic', 'tagbar', 'ctrlp', 'virtualenv', 'ycm']
+        " or only load what you want
+        let g:airline_extensions = ['syntastic', 'tagbar', 'ctrlp', 'virtualenv', 'ycm']
 
     " [ javascript-libraries-syntax ]
         let g:used_javascript_libs = 'react, angularjs'
@@ -125,6 +147,10 @@ call plug#end()
     " [ ag.vim ] 
         " turn off auto preview
         cabbrev Ag Ag!
+
+    " [ emmet-vim ]
+        " change key
+        let g:user_emmet_leader_key='<C-E>'
 
     " [ vim-closetag ]
         let g:closetag_filenames = "*.html,*.js,*.jsx"
@@ -158,13 +184,14 @@ call plug#end()
 
 syntax enable           " enable syntax processing
 
+set shell=/bin/zsh
+
+" let g:solarized_termcolors = 256
+" let g:solarized_termtrans = 1
 colorscheme solarized
 set background=light
-let g:solarized_termcolors=256
 
 set guifont=Menlo\ for\ Powerline
-
-set relativenumber
 
 set ignorecase          " case insensitive search unless 
 set smartcase           " search includes a capital letter
@@ -176,9 +203,8 @@ set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
 set incsearch           " search as characters are entered
 
+set relativenumber
 set number              " line numbers
-
-set clipboard=unnamed
 
 " indentation
 set shiftwidth=4
@@ -207,6 +233,9 @@ set undodir=~/.vim/undo//
 " folds open by default
 set foldlevelstart=999
 
+" open new splits below
+set splitbelow
+
 " fix option key
 if has("gui_macvim")
     set macmeta
@@ -216,11 +245,27 @@ end
 " AUTOCMD (-----------------------------------------------------------
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
+" c#
+autocmd BufNewFile,BufRead *.cs set foldmethod=syntax
+
+" check on exit
+" autocmd BufEnter,InsertLeave * SyntasticCheck
+
+" play nice with yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" linenumbers
+autocmd FocusLost * set norelativenumber
+autocmd FocusGained * set relativenumber
+
 " js indentation
 autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " detect json files correctly
 autocmd BufRead,BufNewFile *.json set filetype=json
+
+" json indentation
+autocmd Filetype json setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " disable auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -271,12 +316,22 @@ let mapleader = "\<space>"
 nnoremap n nzz
 nnoremap N Nzz
 
+" ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 " easier command entering
 nnoremap <leader>; :
 
 " ctrl p stuff
-nnoremap <leader>o :CtrlP<cr>
+nnoremap <leader>o :ClearCtrlPCache<cr>\|:CtrlP<cr>
 nnoremap <leader>p :CtrlPMRU<cr>
+nnoremap <leader>i :CtrlPBufTagAll<cr>
 
 " ag
 nnoremap <leader>a :Ag!<space>

@@ -1090,6 +1090,12 @@ endfunction
 autocmd ColorScheme * if g:colors_name != "solarized" | silent! aunmenu Solarized | else | call SolarizedMenu() | endif
 
 "}}}
+" Custom Colors "{{{
+" ---------------------------------------------------------------------
+hi! default link SignColumn LineNr
+hi! SyntasticErrorSign guifg=red guibg=#eee8d5
+hi! SyntasticWarningSign guifg=orange guibg=#eee8d5
+"}}}
 " License "{{{
 " ---------------------------------------------------------------------
 "
