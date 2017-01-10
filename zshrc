@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/camden/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 export ZSHRC=~/.zshrc
 
 export VISUAL=vim
@@ -90,15 +90,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search.zsh
 alias tree='tree -C'
 alias love='/Applications/love.app/Contents/MacOS/love'
 alias t='todo.sh -d ~/.todo/config'
 alias startPythonServer="python -m SimpleHTTPServer"
 
 # add completion for todo.txt
-source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
+# source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
 
 # alias vim='mvim'
 
@@ -107,10 +105,6 @@ function gitnewpost() {
     git commit -m "new post"
     git push -u origin gh-pages
 }
-
-# bind UP and DOWN arrow keys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 #
 # Defines transfer alias and provides easy command line file and folder sharing.
@@ -213,3 +207,10 @@ export KEYTIMEOUT=1
 
 set -o vi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.oh-my-zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# bind UP and DOWN arrow keys
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
