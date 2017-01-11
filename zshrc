@@ -14,7 +14,7 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell-fork"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -172,8 +172,8 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 PATH="/usr/local/bin:$PATH"
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-source /usr/local/bin/virtualenvwrapper.sh
-source /usr/local/opt/autoenv/activate.sh
+# source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/opt/autoenv/activate.sh
 export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
 alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
@@ -208,9 +208,20 @@ export KEYTIMEOUT=1
 set -o vi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Docker stuff
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.147.128:2376"
+export DOCKER_CERT_PATH="/Users/cbickel1/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+# Run this command to configure your shell: 
+# eval $(docker-machine env default)
+export MY_HOST=192.168.147.1
+export SOURCE=/Users/cbickel1/dev
+# end Docker stuff
+
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # bind UP and DOWN arrow keys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+bindkey '^K' history-substring-search-up
+bindkey '^J' history-substring-search-down
