@@ -54,7 +54,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew autojump)
+plugins=(git brew autojump colored-man-pages colorize osx)
 
 # User configuration
 
@@ -222,6 +222,10 @@ export SOURCE=/Users/cbickel1/dev
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-# bind UP and DOWN arrow keys
+# bind ctrl-K and ctrl-J 
 bindkey '^K' history-substring-search-up
 bindkey '^J' history-substring-search-down
+
+# bind shift-tab to backwards history
+bindkey '^[[Z' reverse-menu-complete
+
