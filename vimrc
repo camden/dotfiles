@@ -81,13 +81,24 @@ call plug#end()
     let g:ctrlp_open_new_file = 'r'
 
     " " ignore certain file types
-    " let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$'
+    let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$|\.DS_Store$'
 
     " " ignore CACHE folder
     " set wildignore+=*/CACHE/*
 
     " py matcher
     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+    " unlimited max files + high max depth
+    let g:ctrlp_max_files=0
+    let g:ctrlp_max_depth=40
+
+    " fix ctrlp speed
+    " creds: http://stackoverflow.com/a/22784889
+    let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
+    " this is a speed miracle
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
 
 " [ YCM ]
     " ycm stuff
@@ -225,6 +236,11 @@ set backspace=indent,eol,start
 " number of lines to see above and below the cursor
 " set scrolloff=8
 
+" undo stuff
+set undofile
+set undolevels=1000
+set undoreload=10000
+
 " set central swp files location
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
@@ -329,7 +345,7 @@ let g:UltiSnipsEditSplit="vertical"
 nnoremap <leader>; :
 
 " ctrl p stuff
-nnoremap <leader>o :ClearCtrlPCache<cr>\|:CtrlP<cr>
+nnoremap <leader>o :CtrlP<cr>
 nnoremap <leader>p :CtrlPMRU<cr>
 nnoremap <leader>i :CtrlPBufTagAll<cr>
 

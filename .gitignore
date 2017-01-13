@@ -1,6 +1,8 @@
 .netrwhist
 vim/plugged/
-vim/sessions
+vim/sessions/
+vim/undo/
+vim/swap
 *.swp
 
 vim/.netrwhist

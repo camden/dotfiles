@@ -54,7 +54,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew autojump colored-man-pages colorize osx)
+plugins=(autojump colored-man-pages colorize osx)
 
 # User configuration
 
@@ -94,6 +94,7 @@ alias tree='tree -C'
 alias love='/Applications/love.app/Contents/MacOS/love'
 alias t='todo.sh -d ~/.todo/config'
 alias startPythonServer="python -m SimpleHTTPServer"
+alias ls='ls -FG'
 
 # add completion for todo.txt
 # source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
@@ -163,13 +164,15 @@ transfer() {
     # cleanup
     rm -f $tmpfile
 }
-eval "`npm completion`"
+
+# npm stuff
+export PATH="$PATH:$NVM_DIR"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # alias python='python3'
 # alias pip='pip3'
 
-PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 # source /usr/local/bin/virtualenvwrapper.sh
@@ -229,3 +232,13 @@ bindkey '^J' history-substring-search-down
 # bind shift-tab to backwards history
 bindkey '^[[Z' reverse-menu-complete
 
+
+export NVM_DIR="/Users/cbickel1/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+alias loadnvm=". $NVM_DIR/nvm.sh"
+function loadNVMAndNPM() {
+    loadnvm
+    eval "`npm completion`"
+}
+
+(loadNVMAndNPM &)
