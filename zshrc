@@ -243,6 +243,7 @@ function enableNPMCompletion() {
 }
 
 # nvm
+# THANK YOU: https://github.com/creationix/nvm/issues/539#issuecomment-245791291
 export NVM_DIR="$HOME/.nvm"
 loadnvm
 
