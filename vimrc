@@ -81,7 +81,7 @@ call plug#end()
     let g:ctrlp_open_new_file = 'r'
 
     " " ignore certain file types
-    let g:ctrlp_custom_ignore = 'pyc\|ds_store\|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$|\.DS_Store$'
+    let ctrlp_custom_ignore = "pyc|ds_store|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$|\.DS_Store$"
 
     " " ignore CACHE folder
     " set wildignore+=*/CACHE/*
@@ -98,7 +98,9 @@ call plug#end()
     let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
     " this is a speed miracle
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard']
+    " note that the ctrlp custom ignore stuff isn't working.
+    let ctrlp_user_command_second = 'cd %s && git ls-files . --cached --exclude-standard -co |& egrep -v ' . '"' . ctrlp_custom_ignore . '"'
+    let g:ctrlp_user_command = ['.git', ctrlp_user_command_second]
 
 " [ YCM ]
     " ycm stuff
@@ -257,6 +259,9 @@ if has("gui_macvim")
     set macmeta
 end
 
+" disable autolinebreaks
+set formatoptions-=t
+
 " ____________________________________________________________________
 " AUTOCMD (-----------------------------------------------------------
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
@@ -275,7 +280,7 @@ autocmd FocusLost * set norelativenumber
 autocmd FocusGained * set relativenumber
 
 " js indentation
-autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd Filetype javascript,jsx setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " detect json files correctly
 autocmd BufRead,BufNewFile *.json set filetype=json

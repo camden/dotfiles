@@ -198,9 +198,9 @@ bindkey -v
 
 precmd() { RPROMPT="" }
 function zle-line-init zle-keymap-select {
-   VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-   RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-   zle reset-prompt
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    zle reset-prompt
 }
 
 zle -N zle-line-init
@@ -235,10 +235,16 @@ bindkey '^[[Z' reverse-menu-complete
 
 export NVM_DIR="/Users/cbickel1/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-alias loadnvm=". $NVM_DIR/nvm.sh"
-function loadNVMAndNPM() {
-    loadnvm
+alias loadnvm=". $NVM_DIR/nvm.sh --no-use"
+nvm_sh=$NVM_DIR/nvm.sh
+
+function enableNPMCompletion() {
     eval "`npm completion`"
 }
 
-(loadNVMAndNPM &)
+# nvm
+export NVM_DIR="$HOME/.nvm"
+loadnvm
+
+alias node='unalias node ; unalias npm ; nvm use default ; node $@'
+alias npm='unalias node ; unalias npm ; nvm use default ; enableNPMCompletion; npm $@'
