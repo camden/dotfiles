@@ -1,4 +1,4 @@
-" vim: fdm=marker foldmarker=(--,___ foldlevelstart=0 foldlevel=0
+" vim: fdm=marker foldmarker=(--,___ foldlevelstart=999
 
 " ____________________________________________________________________
 " IMPORTANT (-----------------------------------------------------------
@@ -130,10 +130,10 @@ call plug#end()
 
     let g:syntastic_javascript_checkers = ['eslint']
 
-    let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': ['html', 'js'] }
+    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['html'] }
 
-    let g:syntastic_error_symbol = "✗✗"
-    let g:syntastic_warning_symbol = "~~"
+    let g:syntastic_error_symbol = "✗"
+    let g:syntastic_warning_symbol = "~"
 
     " let g:syntastic_quiet_messages = {
 " \       'regex': "Name should have prefix"
@@ -304,7 +304,7 @@ autocmd Filetype json setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " source vim on save
-autocmd! bufwritepost $MYVIMRC source %
+" autocmd! bufwritepost $MYVIMRC source %
 
 " " use js syntax highlighting for json
 " autocmd BufNewFile,BufRead *.json set ft=javascript
