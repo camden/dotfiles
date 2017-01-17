@@ -5,7 +5,6 @@
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
 set nocompatible
-filetype off
 
 " ____________________________________________________________________
 " PLUGINS (-----------------------------------------------------------
@@ -80,8 +79,12 @@ call plug#end()
     " open new files in current window
     let g:ctrlp_open_new_file = 'r'
 
+    " show hidden files
+    let g:ctrlp_show_hidden = 1
+
     " " ignore certain file types
-    let ctrlp_custom_ignore = "pyc|ds_store|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$|\.DS_Store$"
+    " let ctrlp_custom_ignore = "pyc|ds_store|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$|\.DS_Store$"
+    " redefined below
 
     " " ignore CACHE folder
     " set wildignore+=*/CACHE/*
@@ -99,6 +102,7 @@ call plug#end()
 
     " this is a speed miracle
     " note that the ctrlp custom ignore stuff isn't working.
+    let ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
     let ctrlp_user_command_second = 'cd %s && git ls-files . --cached --exclude-standard -co |& egrep -v ' . '"' . ctrlp_custom_ignore . '"'
     let g:ctrlp_user_command = ['.git', ctrlp_user_command_second]
 
@@ -197,6 +201,8 @@ call plug#end()
 
 syntax enable           " enable syntax processing
 
+filetype plugin indent on
+
 set shell=/bin/zsh
 
 " let g:solarized_termcolors = 256
@@ -220,9 +226,9 @@ set relativenumber
 set number              " line numbers
 
 " indentation
-set shiftwidth=4
-set tabstop=4 " number of visual spaces per tab
-set softtabstop=4 " number of spaces in tab when editing
+set shiftwidth=2
+set tabstop=2 " number of visual spaces per tab
+set softtabstop=2 " number of spaces in tab when editing
 set expandtab " tabs are spaces
 
 " allow buffers to be unsaved in the background
@@ -261,6 +267,12 @@ end
 
 " disable autolinebreaks
 set formatoptions-=t
+
+" disable attention for swap files
+set shortmess+=A
+
+" fix html indent
+let g:html_indent_inctags = "html,body,head,tbody"
 
 " ____________________________________________________________________
 " AUTOCMD (-----------------------------------------------------------
