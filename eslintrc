@@ -1,4 +1,3 @@
-// vim: set ft=json:
 {
   "plugins": [
     "react"
@@ -10,11 +9,12 @@
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
-    "react/jsx-no-undef": 1,
+    "react/jsx-no-undef": 2,
   },
   "globals": {
     "require": false,
     "document": false,
     "window": false,
+    "module": false,
   }
 }

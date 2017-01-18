@@ -278,6 +278,11 @@ let g:html_indent_inctags = "html,body,head,tbody"
 " AUTOCMD (-----------------------------------------------------------
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
+" json formatting for certain config files
+autocmd BufNewFile,BufRead 
+      \ .tern_config,.eslintrc 
+      \ set filetype=json
+
 " c#
 autocmd BufNewFile,BufRead *.cs set foldmethod=syntax
 
