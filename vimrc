@@ -11,6 +11,7 @@ set nocompatible
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -39,7 +40,6 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
@@ -226,9 +226,9 @@ set relativenumber
 set number              " line numbers
 
 " indentation
-set shiftwidth=2
-set tabstop=2 " number of visual spaces per tab
-set softtabstop=2 " number of spaces in tab when editing
+set shiftwidth=4
+set tabstop=4 " number of visual spaces per tab
+set softtabstop=4 " number of spaces in tab when editing
 set expandtab " tabs are spaces
 
 " allow buffers to be unsaved in the background
@@ -274,6 +274,9 @@ set shortmess+=A
 " fix html indent
 let g:html_indent_inctags = "html,body,head,tbody"
 
+" default foldmethod
+set foldmethod=syntax
+
 " ____________________________________________________________________
 " AUTOCMD (-----------------------------------------------------------
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
@@ -293,11 +296,11 @@ autocmd BufNewFile,BufRead *.cs set foldmethod=syntax
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " linenumbers
-autocmd FocusLost * set norelativenumber
-autocmd FocusGained * set relativenumber
+autocmd FocusLost,BufLeave * set norelativenumber
+autocmd FocusGained,BufEnter * set relativenumber
 
 " js indentation
-autocmd Filetype javascript,jsx setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " detect json files correctly
 autocmd BufRead,BufNewFile *.json set filetype=json
@@ -323,6 +326,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 command! Editvim :tabe $MYVIMRC
 command! Editzsh :tabe ~/.zshrc
 command! Sourcevim :source $MYVIMRC
+command! TrimWhitespace :%s/\s\+$//e
 
 " reveal in finder
 function! s:RevealInFinder()
@@ -367,9 +371,9 @@ let g:UltiSnipsEditSplit="vertical"
 nnoremap <leader>; :
 
 " ctrl p stuff
-nnoremap <leader>o :CtrlP<cr>
+nnoremap <leader>o :CtrlPMixed<cr>
 nnoremap <leader>p :CtrlPMRU<cr>
-nnoremap <leader>i :CtrlPBufTagAll<cr>
+nnoremap <leader>i :CtrlPLine<cr>
 
 " ag
 nnoremap <leader>a :Ag!<space>

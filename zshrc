@@ -232,6 +232,12 @@ bindkey '^J' history-substring-search-down
 # bind shift-tab to backwards history
 bindkey '^[[Z' reverse-menu-complete
 
+# ag config
+alias ag='ag --path-to-ignore ~/.agignore'
+
+# fzf config
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='ag -g "" --path-to-ignore ~/.agignore'
 
 export NVM_DIR="/Users/cbickel1/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
