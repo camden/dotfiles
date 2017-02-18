@@ -107,6 +107,11 @@ function gitnewpost() {
     git push -u origin gh-pages
 }
 
+# bind UP and DOWN arrow keys
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[[Z' reverse-menu-complete
+
 #
 # Defines transfer alias and provides easy command line file and folder sharing.
 #
