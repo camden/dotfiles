@@ -297,7 +297,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " linenumbers
 autocmd FocusLost,BufLeave * set norelativenumber
-autocmd FocusGained,BufEnter * set relativenumber
+autocmd FocusGained,BufEnter,BufWinEnter * set relativenumber
 
 " js indentation
 autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
