@@ -367,6 +367,9 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" unmap shift-k
+nmap <S-K> <NOP>
+
 " easier command entering
 nnoremap <leader>; :
 
