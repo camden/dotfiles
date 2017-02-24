@@ -147,6 +147,7 @@ call plug#end()
         let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']   
 
     " [ airline ]
+        let g:airline_skip_empty_sections = 1
         let g:airline_powerline_fonts = 1
         " an empty list disables all extensions
         let g:airline_extensions = []
@@ -281,41 +282,50 @@ set foldmethod=syntax
 " AUTOCMD (-----------------------------------------------------------
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
-" json formatting for certain config files
-autocmd BufNewFile,BufRead 
-      \ .tern_config,.eslintrc 
-      \ set filetype=json
+" for now, one group -- just for the sake of performance
+" @TODO organize later
+augroup MainGroup
+    autocmd!
 
-" c#
-autocmd BufNewFile,BufRead *.cs set foldmethod=syntax
+    " disable css color for certain files
+    autocmd FileType javascript,jsx call css_color#disable()
 
-" check on exit
-" autocmd BufEnter,InsertLeave * SyntasticCheck
+    " json formatting for certain config files
+    autocmd BufNewFile,BufRead 
+          \ .tern_config,.eslintrc 
+          \ set filetype=json
 
-" play nice with yaml
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    " c#
+    autocmd BufNewFile,BufRead *.cs set foldmethod=syntax
 
-" linenumbers
-autocmd FocusLost,BufLeave * set norelativenumber
-autocmd FocusGained,BufEnter,BufWinEnter * set relativenumber
+    " check on exit
+    " autocmd BufEnter,InsertLeave * SyntasticCheck
 
-" js indentation
-autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
+    " play nice with yaml
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" detect json files correctly
-autocmd BufRead,BufNewFile *.json set filetype=json
+    " linenumbers
+    autocmd FocusLost,BufLeave * set norelativenumber
+    autocmd FocusGained,BufEnter,BufWinEnter * set relativenumber
 
-" json indentation
-autocmd Filetype json setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    " js indentation
+    autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
-" disable auto commenting
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    " detect json files correctly
+    autocmd BufRead,BufNewFile *.json set filetype=json
 
-" source vim on save
-" autocmd! bufwritepost $MYVIMRC source %
+    " json indentation
+    autocmd Filetype json setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-" " use js syntax highlighting for json
-" autocmd BufNewFile,BufRead *.json set ft=javascript
+    " disable auto commenting
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+    " source vim on save
+    " autocmd! bufwritepost $MYVIMRC source %
+
+    " " use js syntax highlighting for json
+    " autocmd BufNewFile,BufRead *.json set ft=javascript
+augroup END
 
 
 " ____________________________________________________________________

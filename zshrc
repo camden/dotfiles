@@ -242,26 +242,26 @@ alias ag='ag --path-to-ignore ~/.agignore'
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g "" --path-to-ignore ~/.agignore'
 
-if [ -f ~/.nvm ]; then
-    export NVM_DIR="/Users/cbickel1/.nvm"
-    # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    alias loadnvm=". $NVM_DIR/nvm.sh"
-    alias loadnvm_no_use=". $NVM_DIR/nvm.sh --no-use"
-    nvm_sh=$NVM_DIR/nvm.sh
+if [ -d ~/.nvm ] 
+    then
+        export NVM_DIR="/Users/cbickel1/.nvm"
+        # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        alias loadnvm=". $NVM_DIR/nvm.sh"
+        alias loadnvm_no_use=". $NVM_DIR/nvm.sh --no-use"
+        nvm_sh=$NVM_DIR/nvm.sh
 
-    function enableNPMCompletion() {
-        eval "`npm completion`"
-    }
+        function enableNPMCompletion() {
+            eval "`npm completion`"
+        }
 
-    # nvm
-    # THANK YOU: https://github.com/creationix/nvm/issues/539#issuecomment-245791291
-    export NVM_DIR="$HOME/.nvm"
-    loadnvm
+        # nvm
+        # THANK YOU: https://github.com/creationix/nvm/issues/539#issuecomment-245791291
+        export NVM_DIR="$HOME/.nvm"
 
-    # alias node='unalias node ; unalias npm ; nvm use default ; node $@'
-    # alias npm='unalias node ; unalias npm ; nvm use default ; enableNPMCompletion; npm $@'
+        # alias node='unalias node ; unalias npm ; nvm use default ; node $@'
+        # alias npm='unalias node ; unalias npm ; nvm use default ; enableNPMCompletion; npm $@'
 
-    NODE_VERSION="v7.4.0"
-    . "$NVM_DIR/nvm.sh" --no-use
-    export PATH="${PATH}:${NVM_DIR}/versions/node/${NODE_VERSION}/bin"
+        NODE_VERSION="v7.4.0"
+        . "$NVM_DIR/nvm.sh" --no-use
+        export PATH="${PATH}:${NVM_DIR}/versions/node/${NODE_VERSION}/bin"
 fi
