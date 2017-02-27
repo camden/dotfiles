@@ -131,8 +131,6 @@ transfer() {
 export PATH="$PATH:$NVM_DIR"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-# alias python='python3'
-# alias pip='pip3'
 
 export PATH="/usr/local/bin:$PATH"
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
@@ -140,9 +138,6 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 # source /usr/local/bin/virtualenvwrapper.sh
 # source /usr/local/opt/autoenv/activate.sh
 export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
-
-# vi mode stuff
-bindkey -v
 
 precmd() { RPROMPT="" }
 function zle-line-init zle-keymap-select {
@@ -176,6 +171,9 @@ source ~/.oh-my-zsh/plugins/zsh-history-substring-search/zsh-history-substring-s
 ###########
 # Bindkey #
 ###########
+
+# vi mode stuff
+bindkey -v
 
 # bind UP and DOWN arrow keys
 bindkey '^[[Z' reverse-menu-complete
