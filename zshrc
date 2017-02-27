@@ -10,45 +10,13 @@ export ANDROID_HOME=~/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell-fork"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
 # Uncomment the following line to display red dots whilst waiting for completion.
  COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -65,30 +33,9 @@ DISABLE_AUTO_UPDATE="true"
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+###########
+# Aliases #
+###########
 
 alias tree='tree -C'
 alias love='/Applications/love.app/Contents/MacOS/love'
@@ -96,10 +43,26 @@ alias t='todo.sh -d ~/.todo/config'
 alias startPythonServer="python -m SimpleHTTPServer"
 alias ls='ls -FG'
 
-# add completion for todo.txt
-# source /usr/local/Cellar/todo-txt/2.10/etc/bash_completion.d/todo_completion
+# ag config
+alias ag='ag --path-to-ignore ~/.agignore'
 
-# alias vim='mvim'
+alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+
+# USEFUL ALIASES
+
+alias rmi="rm -i"
+alias notify='terminal-notifier -title "(づ￣ ³￣)づ" -message "Command finished executing" -sound "Frog" -activate com.googlecode.iterm2'
+
+# GIT ALIASES
+
+alias gs='git status'
+alias gsm='git status | grep modified:'
+alias ga='git add'
+alias gc='git commit'
+
+#############
+# Functions #
+#############
 
 function gitnewpost() {
     git add _posts/
@@ -107,16 +70,12 @@ function gitnewpost() {
     git push -u origin gh-pages
 }
 
-# bind UP and DOWN arrow keys
-bindkey '^[[Z' reverse-menu-complete
-
 #
 # Defines transfer alias and provides easy command line file and folder sharing.
 #
 # Authors:
 #   Remco Verhoef <remco@dutchcoders.io>
 #
- 
 if (( ! $+commands[curl] )); then
   return 1
 fi
@@ -181,20 +140,6 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 # source /usr/local/bin/virtualenvwrapper.sh
 # source /usr/local/opt/autoenv/activate.sh
 export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
-alias fuck='$(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-
-# USEFUL ALIASES
-
-alias rmi="rm -i"
-alias notify='terminal-notifier -title "(づ￣ ³￣)づ" -message "Command finished executing" -sound "Frog" -activate com.googlecode.iterm2'
-
-# GIT ALIASES
-
-alias gs='git status'
-alias gsm='git status | grep modified:'
-alias ga='git add'
-alias gc='git commit'
-
 
 # vi mode stuff
 bindkey -v
@@ -228,15 +173,19 @@ export SOURCE=/Users/cbickel1/dev
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+###########
+# Bindkey #
+###########
+
+# bind UP and DOWN arrow keys
+bindkey '^[[Z' reverse-menu-complete
+
 # bind ctrl-K and ctrl-J 
 bindkey '^K' history-substring-search-up
 bindkey '^J' history-substring-search-down
 
 # bind shift-tab to backwards history
 bindkey '^[[Z' reverse-menu-complete
-
-# ag config
-alias ag='ag --path-to-ignore ~/.agignore'
 
 # fzf config
 # Setting ag as the default source for fzf
