@@ -30,7 +30,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-repeat'
 Plug 'haya14busa/incsearch.vim'
-Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'elzr/vim-json'
@@ -66,14 +65,6 @@ call plug#end()
 " ____________________________________________________________________
 " PLUGIN OPTIONS (----------------------------------------------------
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
-
-" [ YANKSTACK ]
-    " keys to trigger yankstack
-    let g:yankstack_yank_keys = ['y', 'd']
-
-    " initialization
-    call yankstack#setup()
-
 
 " [ CTRL-P ]
     " open new files in current window
@@ -380,9 +371,6 @@ let g:UltiSnipsEditSplit="vertical"
 " unmap shift-k
 nmap <S-K> <NOP>
 
-" easier command entering
-nnoremap <leader>; :
-
 " ctrl p stuff
 nnoremap <leader>o :CtrlPMixed<cr>
 nnoremap <leader>p :CtrlPMRU<cr>
@@ -394,9 +382,6 @@ nnoremap <leader>a :Ag!<space>
 " toggle gundo
 nnoremap <leader>u :GundoToggle<cr>
 
-" save
-nnoremap <leader>w :w<cr>
-
 " alternate file
 nnoremap <leader>r <c-^>
 
@@ -405,9 +390,6 @@ nnoremap <leader>n :NERDTreeToggle<cr>
 
 " tagbar toggle
 nnoremap <leader>t :TagbarToggle<cr>
-
-" copy line no. + file name
-nnoremap <leader>cfn :let @*=expand("%").":".line(".")<cr>
 
 " incsearch
 map /  <Plug>(incsearch-forward)
@@ -422,9 +404,6 @@ map <leader>l :wincmd l<cr>
 
 nnoremap j gj
 nnoremap k gk
-
-" remap for emmet
-" nnoremap <leader>e <c-y>
 
 " toggle syntastic, check on <leader>e
 nnoremap <Leader>e :SyntasticToggleMode<CR>
