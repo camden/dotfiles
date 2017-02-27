@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "Installing ctrlp-cmatcher..."
 export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
