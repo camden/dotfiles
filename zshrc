@@ -241,6 +241,7 @@ alias ag='ag --path-to-ignore ~/.agignore'
 # fzf config
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='ag -g "" --path-to-ignore ~/.agignore'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 if [ -d ~/.nvm ] 
     then
