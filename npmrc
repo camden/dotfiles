@@ -1,0 +1,109 @@
+;;;;
+; npm userconfig file
+; this is a simple ini-formatted file
+; lines that start with semi-colons are comments.
+; read `npm help config` for help on the various options
+;;;;
+
+registry=https://registry.npmjs.intuit.net/
+init-author-name=Camden Bickel
+init-author-email=cam@bickel.io
+init-author-url=http://cam.bickel.io/
+
+;;;;
+; all options with default values
+;;;;
+; access=null
+; always-auth=false
+; also=null
+; bin-links=true
+; browser=null
+; ca=null
+; cafile=undefined
+; cache=/Users/cbickel1/.npm
+; cache-lock-stale=60000
+; cache-lock-retries=10
+; cache-lock-wait=10000
+; cache-max=null
+; cache-min=10
+; cert=null
+; color=true
+; depth=null
+; description=true
+; dev=false
+; dry-run=false
+; editor=vim
+; engine-strict=false
+; force=false
+; fetch-retries=2
+; fetch-retry-factor=10
+; fetch-retry-mintimeout=10000
+; fetch-retry-maxtimeout=60000
+; git=git
+; git-tag-version=true
+; global=false
+; globalconfig=/Users/cbickel1/.nvm/versions/node/v7.4.0/etc/npmrc
+; global-style=false
+; group=846622648
+; heading=npm
+; if-present=false
+; ignore-scripts=false
+; init-module=/Users/cbickel1/.npm-init.js
+; init-author-name=
+; init-author-email=
+; init-author-url=
+; init-version=1.0.0
+; init-license=ISC
+; json=false
+; key=null
+; legacy-bundling=false
+; link=false
+; local-address=undefined
+; loglevel=warn
+; long=false
+; maxsockets=50
+; message=%s
+; node-version=7.4.0
+; onload-script=null
+; only=null
+; optional=true
+; parseable=false
+; prefix=/Users/cbickel1/.nvm/versions/node/v7.4.0
+; production=false
+; progress=true
+; proprietary-attribs=true
+; proxy=null
+; https-proxy=null
+; user-agent=npm/{npm-version} node/{node-version} {platform} {arch}
+; rebuild-bundle=true
+; registry=https://registry.npmjs.org/
+; rollback=true
+; save=false
+; save-bundle=false
+; save-dev=false
+; save-exact=false
+; save-optional=false
+; save-prefix=^
+; scope=
+; scripts-prepend-node-path=warn-only
+; searchopts=
+; searchexclude=null
+; searchstaleness=900
+; shell=/bin/zsh
+; shrinkwrap=true
+; sign-git-tag=false
+; strict-ssl=true
+; tag=latest
+; tag-version-prefix=v
+; tmp=/var/folders/fp/9zwl5dcs6mgd02q228fsdmwsts7zkc/T
+; unicode=true
+; unsafe-perm=true
+; usage=false
+; user=1972633164
+; userconfig=/Users/cbickel1/.npmrc
+; umask=18
+; version=false
+; versions=false
+; viewer=man
+; _exit=true
+; globalignorefile=/Users/cbickel1/.nvm/versions/node/v7.4.0/etc/npmignore
