@@ -5,6 +5,7 @@
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'w0rp/ale'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'SirVer/ultisnips'
@@ -37,7 +38,6 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'othree/yajs.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'sjl/gundo.vim'
 Plug 'ternjs/tern_for_vim'
 Plug 'tmhedberg/SimpylFold'
@@ -101,30 +101,10 @@ call plug#end()
     " fix YCM status annoyances
     set shortmess+=c
 
+" [ Ale ]
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_sign_column_always = 1
 
-" [ SYNTASTIC ]
-    " syntastic recommended settings
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-
-    let g:syntastic_always_populate_loc_list = 1
-    " let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 0
-    let g:syntastic_check_on_wq = 0
-
-    let g:syntastic_javascript_checkers = ['eslint']
-
-    let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['html'] }
-
-    let g:syntastic_error_symbol = "✗"
-    let g:syntastic_warning_symbol = "~"
-
-    " let g:syntastic_quiet_messages = {
-" \       'regex': "Name should have prefix"
-" \    }
-
-    " let g:syntastic_quiet_messages = { 'type' : ['style', 'syntax'] }
 
 " [ OTHER ]
     " [ omnisharp ]
@@ -134,11 +114,12 @@ call plug#end()
     " [ airline ]
         let g:airline_skip_empty_sections = 1
         let g:airline_powerline_fonts = 1
-        " an empty list disables all extensions
-        let g:airline_extensions = []
 
         " or only load what you want
-        let g:airline_extensions = ['syntastic', 'tagbar', 'ctrlp', 'virtualenv', 'ycm']
+        let g:airline_extensions = ['ale', 'tabline', 'tagbar', 'ctrlp', 'virtualenv', 'ycm']
+
+        let g:airline#extensions#ale#error_symbol = '⨉ '
+        let g:airline#extensions#ale#warning_symbol = '⚠ '
 
     " [ javascript-libraries-syntax ]
         let g:used_javascript_libs = 'react, angularjs'
@@ -196,7 +177,7 @@ set shell=/bin/zsh
 colorscheme solarized
 set background=light
 
-set guifont=Menlo\ for\ Powerline
+set guifont=mononoki:h16
 
 set ignorecase          " case insensitive search unless 
 set smartcase           " search includes a capital letter
@@ -282,9 +263,6 @@ augroup MainGroup
 
     " c#
     autocmd BufNewFile,BufRead *.cs set foldmethod=syntax
-
-    " check on exit
-    " autocmd BufEnter,InsertLeave * SyntasticCheck
 
     " play nice with yaml
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -398,9 +376,6 @@ map <leader>l :wincmd l<cr>
 
 nnoremap j gj
 nnoremap k gk
-
-" toggle syntastic, check on <leader>e
-nnoremap <Leader>e :SyntasticToggleMode<CR>
 
 " ____________________________________________________________________
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
