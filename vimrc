@@ -175,10 +175,11 @@ filetype plugin indent on
 
 set shell=/bin/zsh
 
-" let g:solarized_termcolors = 256
-" let g:solarized_termtrans = 1
 colorscheme solarized
 set background=light
+highlight clear SignColumn
+highlight clear LineNr
+highlight LineNr ctermfg=245 guifg=#93a1a1
 
 set guifont=mononoki:h16
 
