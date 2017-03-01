@@ -114,6 +114,9 @@ call plug#end()
     " [ airline ]
         let g:airline_skip_empty_sections = 1
         let g:airline_powerline_fonts = 1
+        let g:airline#extensions#tabline#show_buffers = 0
+        let g:airline#extensions#tabline#show_splits = 0
+        let g:airline#extensions#tabline#show_close_button = 0
 
         " or only load what you want
         let g:airline_extensions = ['ale', 'tabline', 'tagbar', 'ctrlp', 'virtualenv', 'ycm']
