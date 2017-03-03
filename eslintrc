@@ -12,11 +12,12 @@
   ],
   "rules": {
     "react/jsx-no-undef": 2,
+    "indent": "warn"
   },
   "globals": {
     "require": false,
     "document": false,
     "window": false,
-    "module": false,
+    "module": false
   }
 }
