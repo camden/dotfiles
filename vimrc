@@ -181,6 +181,9 @@ highlight clear SignColumn
 highlight clear LineNr
 highlight LineNr ctermfg=245 guifg=#93a1a1
 
+" enable scrolling in terminal vim
+set mouse=a
+
 set guifont=mononoki:h16
 
 set ignorecase          " case insensitive search unless 
