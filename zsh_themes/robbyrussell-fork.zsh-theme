@@ -4,8 +4,16 @@ parent_dir_color="cyan"
 current_dir_color="magenta"
 
 current_dir_path() {
-    CURRENT=$(print -P %3~)
-    echo "${CURRENT%/*}/"
+    CURRENT=`dirname ${PWD}`
+    if [[ $CURRENT = /  ]]; then
+        echo ""
+    elif [[ $PWD = $HOME  ]]; then
+        echo ""
+    else
+        CURRENT=$(print -P %3~)
+        echo "${CURRENT%/*}/"
+    fi
+
 }
 
 directory_name() {
