@@ -368,7 +368,7 @@ nnoremap <leader>r <c-^>
 nnoremap <leader>n :NERDTreeToggle<cr>
 
 " tagbar toggle
-nnoremap <leader>t :TagbarToggle<cr>
+nnoremap <leader>t :TagbarOpenAutoClose<cr>
 
 " incsearch
 map /  <Plug>(incsearch-forward)
