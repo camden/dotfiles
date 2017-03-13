@@ -1,7 +1,7 @@
 # Thanks to http://radiumblue.net/blog/2013/04/29/zsh-prompt-spicing-up-the-present-working-directory/
 
-parent_dir_color="cyan"
-current_dir_color="magenta"
+parent_dir_color="black"
+current_dir_color="cyan"
 
 current_dir_path() {
     CURRENT=`dirname ${PWD}`
@@ -17,7 +17,7 @@ current_dir_path() {
 }
 
 directory_name() {
-    echo "%{$fg[$parent_dir_color]%}$(current_dir_path)%{$reset_color%}%{$fg_bold[$current_dir_color]%}%1~%{$reset_color%}"
+    echo "%{$fg[$parent_dir_color]%}$(current_dir_path)%{$reset_color%}%{$fg[$current_dir_color]%}%1~%{$reset_color%}"
 }
 
 NEWLINE=$'\n'
@@ -25,6 +25,8 @@ PROMPT_SYMBOL=$'╼'
 local ret_status="%(?:%{$fg_bold[green]%}${PROMPT_SYMBOL} :%{$fg_bold[red]%}${PROMPT_SYMBOL} )"
 PROMPT='${NEWLINE}${NEWLINE}╭╼ $(directory_name)$reset_color%} $(git_prompt_info)
 ╰${ret_status}'
+
+# RPROMPT='%{$fg[black]%} %D{%a, %b %e at %r}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "

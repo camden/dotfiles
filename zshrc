@@ -139,10 +139,11 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 # source /usr/local/opt/autoenv/activate.sh
 export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
 
+OLD_RPROMPT=${RPROMPT}
 precmd() { RPROMPT="" }
 function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    VIM_PROMPT="%{$fg[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1${OLD_RPROMPT}"
     zle reset-prompt
 }
 
