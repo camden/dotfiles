@@ -5,13 +5,13 @@
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'editorconfig/editorconfig-vim'
 Plug 'w0rp/ale'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'suan/vim-instant-markdown'
-" Plug 'xolox/vim-easytags'
 Plug 'blueyed/vim-diminactive'
 Plug 'lervag/vimtex'
 Plug 'tpope/vim-eunuch'
@@ -19,7 +19,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'mattn/emmet-vim'
 Plug 'sjl/vitality.vim'
 Plug 'kchmck/vim-coffee-script'
-" Plug 'OmniSharp/omnisharp-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar'
@@ -29,7 +28,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'elzr/vim-json'
 Plug 'tmhedberg/matchit'
-Plug 'gavocanov/vim-js-indent'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mattn/emmet-vim'
@@ -67,10 +65,6 @@ call plug#end()
     " show hidden files
     let g:ctrlp_show_hidden = 1
 
-    " " ignore certain file types
-    " let ctrlp_custom_ignore = "pyc|ds_store|git|CACHE/|\v[\/](node_modules)|(\.(swp|ico|git|svn))$|\.DS_Store$"
-    " redefined below
-
     " " ignore CACHE folder
     " set wildignore+=*/CACHE/*
 
@@ -94,9 +88,12 @@ call plug#end()
 " [ YCM ]
     " ycm stuff
     let g:ycm_filepath_completion_use_working_dir = 1
-    let g:ycm_python_binary_path = '/usr/local/bin/python3'
+    let g:ycm_python_binary_path = '/usr/local/bin/python'
     let g:ycm_seed_identifiers_with_syntax = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
+
+    " fix server crash? https://github.com/Valloric/YouCompleteMe/issues/1018
+    " let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 
     " fix YCM status annoyances
     set shortmess+=c
@@ -107,6 +104,9 @@ call plug#end()
 
 
 " [ OTHER ]
+    " [ vim-javascript ]
+        let g:javascript_plugin_jsdoc = 1
+
     " [ omnisharp ]
         " Get Code Issues and syntax errors
         let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']   
@@ -162,6 +162,9 @@ call plug#end()
 
     " [ colorizer ]
         let g:colorizer_auto_filetype='css,html'
+
+    " [ tagbar ]
+        let g:tagbar_compact=1
 
 
 

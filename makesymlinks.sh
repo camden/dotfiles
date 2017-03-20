@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim eslintrc tern-config zshrc oh-my-zsh/themes/robbyrussell-fork.zsh_theme"    # list of files/folders to symlink in homedir
+files="gitignore bashrc vimrc vim eslintrc tern-config zshrc oh-my-zsh/themes/robbyrussell-fork.zsh_theme"    # list of files/folders to symlink in homedir
 
 ##########
 

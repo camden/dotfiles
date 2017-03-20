@@ -5,6 +5,8 @@ export ZSHRC=~/.zshrc
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+export DYLD_FORCE_FLAT_NAMESPACE=1
+
 # react native junk
 export ANDROID_HOME=~/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
@@ -176,6 +178,9 @@ source ~/.oh-my-zsh/plugins/zsh-history-substring-search/zsh-history-substring-s
 # vi mode stuff
 bindkey -v
 
+# get backspace working in vi mode http://unix.stackexchange.com/questions/206853/setting-backspace-2-in-zsh-with-vi-bindings
+bindkey -v '^?' backward-delete-char
+
 # bind UP and DOWN arrow keys
 bindkey '^[[Z' reverse-menu-complete
 
@@ -188,7 +193,7 @@ bindkey '^[[Z' reverse-menu-complete
 
 # fzf config
 # Setting ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag -g "" --path-to-ignore ~/.agignore'
+export FZF_DEFAULT_COMMAND='ag -g "" --hidden --ignore .git --path-to-ignore ~/.agignore'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 if [ -d ~/.nvm ] 
