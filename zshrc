@@ -15,7 +15,7 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 ZSH_THEME="robbyrussell-fork"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
  COMPLETION_WAITING_DOTS="true"
