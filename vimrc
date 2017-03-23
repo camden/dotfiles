@@ -301,6 +301,9 @@ augroup MainGroup
 
     " " use js syntax highlighting for json
     " autocmd BufNewFile,BufRead *.json set ft=javascript
+
+    " set the iTerm title to current buffer
+    autocmd BufEnter * call SetTerminalTitle()
 augroup END
 
 
@@ -313,6 +316,19 @@ command! Editvim :tabe $MYVIMRC
 command! Editzsh :tabe ~/.zshrc
 command! Sourcevim :source $MYVIMRC
 command! TrimWhitespace :%s/\s\+$//e
+
+" Set the title of the Terminal to the currently open file
+function! SetTerminalTitle()
+    let titleString = expand('%:t')
+    if len(titleString) > 0
+        let &titlestring = expand('%:~:h:t') . "/" . expand('%:p:t')
+        " this is the format iTerm2 expects when setting the window title
+        let args = "\033];".&titlestring."\007"
+        let cmd = 'silent !echo -e "'.args.'"'
+        execute cmd
+        redraw!
+    endif
+endfunction
 
 " reveal in finder
 function! s:RevealInFinder()
