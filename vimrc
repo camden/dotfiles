@@ -282,7 +282,7 @@ augroup MainGroup
 
     " linenumbers
     autocmd FocusLost,BufLeave * set norelativenumber
-    autocmd FocusGained,BufEnter,BufWinEnter * set relativenumber
+    autocmd FocusGained,BufEnter,CursorHold,BufWinEnter * set relativenumber
 
     " js indentation
     autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
