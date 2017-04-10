@@ -215,9 +215,10 @@ if [ -d ~/.nvm ]
         # alias node='unalias node ; unalias npm ; nvm use default ; node $@'
         # alias npm='unalias node ; unalias npm ; nvm use default ; enableNPMCompletion; npm $@'
 
-        NODE_VERSION="v7.4.0"
+        # NODE_VERSION="v7.4.0"
         . "$NVM_DIR/nvm.sh" --no-use
-        export PATH="${PATH}:${NVM_DIR}/versions/node/${NODE_VERSION}/bin"
+        # export PATH="${PATH}:${NVM_DIR}/versions/node/${NODE_VERSION}/bin"
+        nvm use default > /dev/null
 fi
 ###-begin-npm-completion-###
 #
