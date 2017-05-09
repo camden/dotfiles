@@ -311,11 +311,12 @@ augroup END
 " ALIASES/FUNCTIONS (-------------------------------------------------
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
-" aliases for myvimrc
+" aliases
 command! Editvim :tabe $MYVIMRC
 command! Editzsh :tabe ~/.zshrc
 command! Sourcevim :source $MYVIMRC
 command! TrimWhitespace :%s/\s\+$//e
+command! AlignAll :norm gg=G''
 
 " Set the title of the Terminal to the currently open file
 function! SetTerminalTitle()
