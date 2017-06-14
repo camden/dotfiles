@@ -284,8 +284,8 @@ augroup MainGroup
     autocmd FocusLost,BufLeave * set norelativenumber
     autocmd FocusGained,BufEnter,CursorHold,BufWinEnter * set relativenumber
 
-    " js indentation
-    autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4
+    " js indentation - foldmethod is to help performance
+    autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4 foldmethod=indent
 
     " detect json files correctly
     autocmd BufRead,BufNewFile *.json set filetype=json
