@@ -5,6 +5,8 @@
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'w0rp/ale'
 Plug 'mxw/vim-jsx'
