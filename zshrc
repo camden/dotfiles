@@ -280,3 +280,4 @@ fi
 ###-end-npm-completion-###
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+fpath=(/usr/local/share/zsh-completions $fpath)
