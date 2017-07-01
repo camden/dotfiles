@@ -162,17 +162,6 @@ export KEYTIMEOUT=1
 set -o vi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Docker stuff
-# export DOCKER_HOST=tcp://192.168.99.100:2376
-# export DOCKER_MACHINE_NAME=default
-# export DOCKER_TLS_VERIFY=1
-# export DOCKER_CERT_PATH=/Users/idanadar/.docker/machine/machines/default
-# # Run this command to configure your shell: 
-# # eval $(docker-machine env default)
-# export MY_HOST=192.168.147.1
-# export SOURCE=/Users/cbickel1/dev
-# # end Docker stuff
-
 source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.oh-my-zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
@@ -284,3 +273,4 @@ fi
 ###-end-npm-completion-###
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+fpath=(/usr/local/share/zsh-completions $fpath)
