@@ -104,8 +104,12 @@ call plug#end()
     let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
     let g:ale_sign_column_always = 1
     let g:ale_linters = {
-                \   'javascript': ['eslint'],
+                \   'javascript': ['eslint', 'flow'],
                 \}
+    let g:ale_fixers = {}
+    let g:ale_fixers['javascript'] = ['prettier']
+    let g:ale_fix_on_save = 1
+    let g:ale_javascript_prettier_options = '--single-quote --trailing-comma es5'
 
 
 " [ OTHER ]
@@ -155,7 +159,8 @@ call plug#end()
 
     " [ NERDTree ]
         " ignore files
-        let NERDTreeIgnore = ['\.pyc$']
+        let NERDTreeIgnore = ['\.pyc$', 'node_modules', '\.git']
+        let NERDTreeShowHidden = 1
 
     " [ vim-notes stuff ]
         let g:notes_directories = ['~/Dropbox/vim notes']
@@ -287,7 +292,7 @@ augroup MainGroup
     autocmd FocusGained,BufEnter,CursorHold,BufWinEnter * set relativenumber
 
     " js indentation - foldmethod is to help performance
-    autocmd Filetype javascript,jsx setlocal shiftwidth=4 tabstop=4 softtabstop=4 foldmethod=indent
+    autocmd Filetype javascript,jsx setlocal shiftwidth=2 tabstop=2 softtabstop=2 foldmethod=indent
 
     " detect json files correctly
     autocmd BufRead,BufNewFile *.json set filetype=json
