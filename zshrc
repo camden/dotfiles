@@ -40,6 +40,7 @@ source $ZSH/oh-my-zsh.sh
 ###########
 
 alias tree='tree -C'
+alias pico8='/Applications/PICO-8.app/Contents/MacOS/pico8'
 alias love='/Applications/love.app/Contents/MacOS/love'
 alias t='todo.sh -d ~/.todo/config'
 alias startPythonServer="python -m SimpleHTTPServer"
@@ -274,3 +275,7 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 fpath=(/usr/local/share/zsh-completions $fpath)
+
+# Fixes issue with git HEAD^^
+setopt NO_NOMATCH
+

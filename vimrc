@@ -5,6 +5,8 @@
 " ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 call plug#begin('~/.vim/plugged')
 
+Plug 'flowtype/vim-flow'
+Plug 'plasticboy/vim-markdown'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'editorconfig/editorconfig-vim'
@@ -13,7 +15,6 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'suan/vim-instant-markdown'
 Plug 'blueyed/vim-diminactive'
 Plug 'lervag/vimtex'
 Plug 'tpope/vim-eunuch'
@@ -115,6 +116,7 @@ call plug#end()
 " [ OTHER ]
     " [ vim-javascript ]
         let g:javascript_plugin_jsdoc = 1
+        let g:javascript_plugin_flow = 1
 
     " [ omnisharp ]
         " Get Code Issues and syntax errors
@@ -159,7 +161,7 @@ call plug#end()
 
     " [ NERDTree ]
         " ignore files
-        let NERDTreeIgnore = ['\.pyc$', 'node_modules', '\.git']
+        let NERDTreeIgnore = ['\.pyc$', 'node_modules', '\.git', '.DS_STORE']
         let NERDTreeShowHidden = 1
 
     " [ vim-notes stuff ]
@@ -175,6 +177,9 @@ call plug#end()
 
     " [ tagbar ]
         let g:tagbar_compact=1
+
+    " [ vim-markdown ]
+        let g:vim_markdown_frontmatter = 1
 
 
 
@@ -213,9 +218,9 @@ set relativenumber
 set number              " line numbers
 
 " indentation
-set shiftwidth=4
-set tabstop=4 " number of visual spaces per tab
-set softtabstop=4 " number of spaces in tab when editing
+set shiftwidth=2
+set tabstop=2 " number of visual spaces per tab
+set softtabstop=2 " number of spaces in tab when editing
 set expandtab " tabs are spaces
 
 " allow buffers to be unsaved in the background
@@ -285,7 +290,7 @@ augroup MainGroup
     autocmd BufNewFile,BufRead *.cs set foldmethod=syntax
 
     " play nice with yaml
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType yaml,md setlocal ts=2 sts=2 sw=2 expandtab
 
     " linenumbers
     autocmd FocusLost,BufLeave * set norelativenumber
@@ -296,6 +301,10 @@ augroup MainGroup
 
     " detect json files correctly
     autocmd BufRead,BufNewFile *.json set filetype=json
+
+    " pico-8
+    autocmd BufRead,BufNewFile *.p8 set filetype=lua
+    autocmd Filetype lua setlocal ts=2 sts=2 sw=2 expandtab
 
     " json indentation
     autocmd Filetype json setlocal shiftwidth=2 tabstop=2 softtabstop=2
